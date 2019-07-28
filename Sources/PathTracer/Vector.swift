@@ -1,5 +1,9 @@
 import Foundation
 
+func dot(_ first: Vector, _ second: Vector) -> Double {
+  return (first.x * second.x) + (first.y * second.y)  + (first.z * second.z)
+}
+
 struct Vector {
     var x: Double
     var y: Double
@@ -56,19 +60,7 @@ struct Vector {
     }
 
     func reflected(_ normal: Vector) -> Vector {
-      return self - (2.0 * (self.dot(normal) * normal))
-    }
-
-    func cross(_ other: Vector) -> Vector {
-      return Vector(
-      (y * other.z) - (z * other.y),
-      (z * other.x) - (x * other.z),
-      (x * other.y) - (y * other.x)
-      )
-    }
-
-    func dot(_ other: Vector) -> Double {
-      return (x * other.x) + (y * other.y)  + (z * other.z)
+      return self - (2.0 * (dot(self, normal) * normal))
     }
 
     static func random(distance: Double) -> Vector {
